@@ -33,7 +33,7 @@ class User(BasicManager):
         if matched_index == 1:
             raise UnknownError(f"Unknown {self.module}: {sub_id}")
         if matched_index != 0:
-            print(self.telnet.match.group(0))
+            raise UnknownError(self.telnet.match.group(0))
         for update in data:
             if not ((type(update) is list) and (len(update) >= 1)):
                 raise JasminSyntaxError("Not a list: %s" % update)
