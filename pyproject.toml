@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jasmin_telnet"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="BlackOrder", email="4302157+BlackOrder@users.noreply.github.com" },
 ]
