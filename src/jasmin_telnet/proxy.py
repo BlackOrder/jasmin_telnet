@@ -11,7 +11,7 @@ from .user import User as Telnet_User
 import threading
 
 class Proxy:
-    def __init__(self, host: str = "127.0.0.1", port: int = 8990, timeout: int = 10, auth: bool = True, username: str = "jcliadmin", password: str = "jclipwd", standard_prompt: str = "jcli : ", interactive_prompt: str = "> ", log_status: bool = False, script_log: str = "JasminTelnet-Proxy-> "):
+    def __init__(self, host: str = "127.0.0.1", port: int = 8990, timeout: int = 10, auth: bool = True, username: str = "jcliadmin", password: str = "jclipwd", standard_prompt: str = "jcli : ", interactive_prompt: str = "> ", log_status: bool = False, logger=None):
         """ Constructor """
         self.telnet_host = host
         self.telnet_port = port
@@ -22,7 +22,11 @@ class Proxy:
         self.telnet_standard_prompt = standard_prompt
         self.telnet_interactive_prompt = interactive_prompt
         self.log_status = log_status
-        self.script_log = script_log
+        if logger is None:
+            self.logger = self.log
+        else:
+            self.logger = logger
+
 
     def getTelnetConn(self) -> TelnetConnection:
         return TelnetConnection(
@@ -37,8 +41,8 @@ class Proxy:
         )
 
     def log(self, log: str):
-        if self.log_status is True:
-            print("{:<65}".format(f"{self.script_log}{log}")+"***", flush=True)
+        """ holder for disabled logger """
+        pass
 
     def syncAll(self, collection_data: dict[str, dict[str, dict[str, str | int | float | bool]]]):
         """ Excute Sync all modules function """
@@ -137,34 +141,34 @@ class Proxy:
         telnet = self.getTelnetConn()
 
         if module == "smppccm":
-            self.log("***          Sync: Smppccm module.")
+            self.logger("          Sync: Smppccm module.")
             Smppccm(telnet_conn=telnet).sync(sub_modules_data=sub_modules_data)
         if module == "httpccm":
-            self.log("***          Sync: Httpccm module.")
+            self.logger("          Sync: Httpccm module.")
             Httpccm(telnet_conn=telnet).sync(sub_modules_data=sub_modules_data)
         if module == "group":
-            self.log("***          Sync: Group module.")
+            self.logger("          Sync: Group module.")
             Group(telnet_conn=telnet).sync(sub_modules_data=sub_modules_data)
         if module == "user":
-            self.log("***          Sync: User module.")
+            self.logger("          Sync: User module.")
             User(telnet_conn=telnet).sync(sub_modules_data=sub_modules_data)
         if module == "filter":
-            self.log("***          Sync: Filter module.")
+            self.logger("          Sync: Filter module.")
             Filter(telnet_conn=telnet).sync(sub_modules_data=sub_modules_data)
         if module == "mointerceptor":
-            self.log("***          Sync: MoInterceptor module.")
+            self.logger("          Sync: MoInterceptor module.")
             MOInterceptor(telnet_conn=telnet).sync(
                 sub_modules_data=sub_modules_data)
         if module == "morouter":
-            self.log("***          Sync: MoRouter module.")
+            self.logger("          Sync: MoRouter module.")
             Morouter(telnet_conn=telnet).sync(
                 sub_modules_data=sub_modules_data)
         if module == "mtinterceptor":
-            self.log("***          Sync: MtInterceptor module.")
+            self.logger("          Sync: MtInterceptor module.")
             MTInterceptor(telnet_conn=telnet).sync(
                 sub_modules_data=sub_modules_data)
         if module == "mtrouter":
-            self.log("***          Sync: MtRouter module.")
+            self.logger("          Sync: MtRouter module.")
             Mtrouter(telnet_conn=telnet).sync(
                 sub_modules_data=sub_modules_data)
 
@@ -173,33 +177,33 @@ class Proxy:
         telnet = self.getTelnetConn()
 
         if module == "smppccm":
-            self.log("***          Add new: Smppccm module.")
+            self.logger("          Add new: Smppccm module.")
             Smppccm(telnet_conn=telnet).add(sub_id=sub_id, options=options)
         if module == "httpccm":
-            self.log("***          Add new: Httpccm module.")
+            self.logger("          Add new: Httpccm module.")
             Httpccm(telnet_conn=telnet).add(sub_id=sub_id, options=options)
         if module == "group":
-            self.log("***          Add new: Group module.")
+            self.logger("          Add new: Group module.")
             Group(telnet_conn=telnet).add(sub_id=sub_id, options=options)
         if module == "user":
-            self.log("***          Add new: User module.")
+            self.logger("          Add new: User module.")
             User(telnet_conn=telnet).add(sub_id=sub_id, options=options)
         if module == "filter":
-            self.log("***          Add new: Filter module.")
+            self.logger("          Add new: Filter module.")
             Filter(telnet_conn=telnet).add(sub_id=sub_id, options=options)
         if module == "mointerceptor":
-            self.log("***          Add new: MoInterceptor module.")
+            self.logger("          Add new: MoInterceptor module.")
             MOInterceptor(telnet_conn=telnet).add(
                 sub_id=sub_id, options=options)
         if module == "morouter":
-            self.log("***          Add new: MoRouter module.")
+            self.logger("          Add new: MoRouter module.")
             Morouter(telnet_conn=telnet).add(sub_id=sub_id, options=options)
         if module == "mtinterceptor":
-            self.log("***          Add new: MtInterceptor module.")
+            self.logger("          Add new: MtInterceptor module.")
             MTInterceptor(telnet_conn=telnet).add(
                 sub_id=sub_id, options=options)
         if module == "mtrouter":
-            self.log("***          Add new: MtRouter module.")
+            self.logger("          Add new: MtRouter module.")
             Mtrouter(telnet_conn=telnet).add(sub_id=sub_id, options=options)
 
     def edit(self, module: str, sub_id: str, options: dict[str, str | int | float | bool]):
@@ -207,33 +211,33 @@ class Proxy:
         telnet = self.getTelnetConn()
 
         if module == "smppccm":
-            self.log("***          Update: Smppccm module.")
+            self.logger("          Update: Smppccm module.")
             Smppccm(telnet_conn=telnet).update(sub_id=sub_id, options=options)
         if module == "httpccm":
-            self.log("***          Update: Httpccm module.")
+            self.logger("          Update: Httpccm module.")
             Httpccm(telnet_conn=telnet).update(sub_id=sub_id, options=options)
         if module == "group":
-            self.log("***          Update: Group module.")
+            self.logger("          Update: Group module.")
             Group(telnet_conn=telnet).update(sub_id=sub_id, options=options)
         if module == "user":
-            self.log("***          Update: User module.")
+            self.logger("          Update: User module.")
             User(telnet_conn=telnet).update(sub_id=sub_id, options=options)
         if module == "filter":
-            self.log("***          Update: Filter module.")
+            self.logger("          Update: Filter module.")
             Filter(telnet_conn=telnet).update(sub_id=sub_id, options=options)
         if module == "mointerceptor":
-            self.log("***          Update: MoInterceptor module.")
+            self.logger("          Update: MoInterceptor module.")
             MOInterceptor(telnet_conn=telnet).update(
                 sub_id=sub_id, options=options)
         if module == "morouter":
-            self.log("***          Update: MoRouter module.")
+            self.logger("          Update: MoRouter module.")
             Morouter(telnet_conn=telnet).update(sub_id=sub_id, options=options)
         if module == "mtinterceptor":
-            self.log("***          Update: MtInterceptor module.")
+            self.logger("          Update: MtInterceptor module.")
             MTInterceptor(telnet_conn=telnet).update(
                 sub_id=sub_id, options=options)
         if module == "mtrouter":
-            self.log("***          Update: MtRouter module.")
+            self.logger("          Update: MtRouter module.")
             Mtrouter(telnet_conn=telnet).update(sub_id=sub_id, options=options)
 
     def remove(self, module: str, sub_id: str):
@@ -241,31 +245,31 @@ class Proxy:
         telnet = self.getTelnetConn()
 
         if module == "smppccm":
-            self.log("***          Remove: Smppccm module.")
+            self.logger("          Remove: Smppccm module.")
             Smppccm(telnet_conn=telnet).remove(sub_id=sub_id)
         if module == "httpccm":
-            self.log("***          Remove: Httpccm module.")
+            self.logger("          Remove: Httpccm module.")
             Httpccm(telnet_conn=telnet).remove(sub_id=sub_id)
         if module == "group":
-            self.log("***          Remove: Group module.")
+            self.logger("          Remove: Group module.")
             Group(telnet_conn=telnet).remove(sub_id=sub_id)
         if module == "user":
-            self.log("***          Remove: User module.")
+            self.logger("          Remove: User module.")
             User(telnet_conn=telnet).remove(sub_id=sub_id)
         if module == "filter":
-            self.log("***          Remove: Filter module.")
+            self.logger("          Remove: Filter module.")
             Filter(telnet_conn=telnet).remove(sub_id=sub_id)
         if module == "mointerceptor":
-            self.log("***          Remove: MoInterceptor module.")
+            self.logger("          Remove: MoInterceptor module.")
             MOInterceptor(telnet_conn=telnet).remove(sub_id=sub_id)
         if module == "morouter":
-            self.log("***          Remove: MoRouter module.")
+            self.logger("          Remove: MoRouter module.")
             Morouter(telnet_conn=telnet).remove(sub_id=sub_id)
         if module == "mtinterceptor":
-            self.log("***          Remove: MtInterceptor module.")
+            self.logger("          Remove: MtInterceptor module.")
             MTInterceptor(telnet_conn=telnet).remove(sub_id=sub_id)
         if module == "mtrouter":
-            self.log("***          Remove: MtRouter module.")
+            self.logger("          Remove: MtRouter module.")
             Mtrouter(telnet_conn=telnet).remove(sub_id=sub_id)
 
 
