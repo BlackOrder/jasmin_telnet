@@ -1,8 +1,10 @@
 # Jasmin Telnet
 
-Manage Jasmin SMS Gateway's [https://github.com/jookies/jasmin] through telnet
+Manage [Jasmin SMS Gateway](https://github.com/jookies/jasmin)'s configurations through telnet
 
 I wrote some of it and collected most of from: [jasmin-api](https://github.com/jookies/jasmin-api) and [jasmin-web-panel](https://github.com/101t/jasmin-web-panel).
+
+Also some of the logic is ported from this PHP package [jasmin-web](https://github.com/nnikitos95/jasmin-web) by [nnikitos95](https://github.com/nnikitos95)
 
 ## Install
 #### PYPI:
