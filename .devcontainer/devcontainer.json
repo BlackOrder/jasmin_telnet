@@ -1,0 +1,11 @@
+{
+	"name": "jasmin-telnet-dev",
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	"service": "configuration",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"postCreateCommand": {
+		"install": "pip install ."
+	}
+}

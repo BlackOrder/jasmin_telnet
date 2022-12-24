@@ -1,0 +1,22 @@
+version: "3"
+name: jasmin-telnet
+services:
+  configuration:
+    image: blackorder/dev-python
+    volumes:
+      - root_user:/root:z
+      - ../..:/workspaces:cached
+    networks:
+      - jasmin-core_jasmin_subnet
+    env_file:
+      - devcontainer.env
+
+volumes:
+  root_user: {}
+  extensions: {}
+  insiders: {}
+
+networks:
+  jasmin-core_jasmin_subnet:
+    external: true
+
