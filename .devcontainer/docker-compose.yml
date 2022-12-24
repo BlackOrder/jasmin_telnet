@@ -1,7 +1,7 @@
 version: "3"
 name: jasmin-telnet
 services:
-  configuration:
+  telnet:
     image: blackorder/dev-python
     volumes:
       - root_user:/root:z

@@ -3,7 +3,7 @@
 	"dockerComposeFile": [
 		"docker-compose.yml"
 	],
-	"service": "configuration",
+	"service": "telnet",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"postCreateCommand": {
 		"install": "pip install ."
