@@ -1,15 +1,17 @@
-from pexpect import spawn
 import pexpect
+from pexpect import spawn
 
-from .exceptions import TelnetUnexpectedResponse, TelnetConnectionTimeout, TelnetLoginFailed
+from .exceptions import (TelnetConnectionTimeout, TelnetLoginFailed,
+                         TelnetUnexpectedResponse)
 
 
 class TelnetConnection(object):
-    def __init__(self, host: str = "127.0.0.1", port: int = 8990, timeout: int = 10, auth:bool=True, username: str = "jcliadmin", password: str = "jclipwd", standard_prompt: str = "jcli : ", interactive_prompt: str = "> "):
+    def __init__(self, host: str = "127.0.0.1", port: int = 8990, timeout: int = 10, auth: bool = True, username: str = "jcliadmin", password: str = "jclipwd", standard_prompt: str = "jcli : ", interactive_prompt: str = "> "):
         self.STANDARD_PROMPT = standard_prompt
         self.INTERACTIVE_PROMPT = interactive_prompt
         try:
-            telnet: spawn = pexpect.spawn(f"telnet {host} {port}", timeout=timeout)
+            telnet: spawn = pexpect.spawn(
+                f"telnet {host} {port}", timeout=timeout)
             if auth:
                 telnet.expect_exact("Username: ")
                 telnet.sendline(username)

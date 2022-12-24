@@ -1,5 +1,5 @@
-from .conn import TelnetConnection
 from .basicmanager import BasicManager, JasminSyntaxError, UnknownError
+from .conn import TelnetConnection
 
 
 class User(BasicManager):
@@ -8,7 +8,7 @@ class User(BasicManager):
     def __init__(self, conn: TelnetConnection):
         super().__init__(conn=conn, module="user", lookup_field="uid")
         self.statusHeaderID = "User id"
-    
+
     def partial_update(self, data: dict[str, str | int | float | bool], sub_id: str) -> bool:
         """Update some SubModule attributes
         """

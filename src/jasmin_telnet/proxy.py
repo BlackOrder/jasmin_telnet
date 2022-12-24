@@ -1,3 +1,5 @@
+import threading
+
 from .conn import TelnetConnection
 from .filter import Filter as Telnet_Filter
 from .group import Group as Telnet_Group
@@ -8,7 +10,7 @@ from .mtinterceptor import MTInterceptor as Telnet_MTInterceptor
 from .mtrouter import MTRouter as Telnet_MTRouter
 from .smppccm import SMPPCCM as Telnet_SMPPCCM
 from .user import User as Telnet_User
-import threading
+
 
 class Proxy:
     def __init__(self, host: str = "127.0.0.1", port: int = 8990, timeout: int = 10, auth: bool = True, username: str = "jcliadmin", password: str = "jclipwd", standard_prompt: str = "jcli : ", interactive_prompt: str = "> ", log_status: bool = False, logger=None):
@@ -26,7 +28,6 @@ class Proxy:
             self.logger = self.log
         else:
             self.logger = logger
-
 
     def getTelnetConn(self) -> TelnetConnection:
         return TelnetConnection(

@@ -1,5 +1,5 @@
-from .conn import TelnetConnection
 from .basicmanager import BasicManager, ObjectNotFoundError
+from .conn import TelnetConnection
 
 
 class Group(BasicManager):

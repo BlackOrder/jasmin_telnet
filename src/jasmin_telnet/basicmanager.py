@@ -1,8 +1,6 @@
 from .conn import TelnetConnection
-from .exceptions import (CanNotModifyError,
-                         JasminSyntaxError, JasminError,
-                         UnknownError, MissingKeyError,
-                         ObjectNotFoundError)
+from .exceptions import (CanNotModifyError, JasminError, JasminSyntaxError,
+                         MissingKeyError, ObjectNotFoundError, UnknownError)
 
 
 class BasicManager(object):

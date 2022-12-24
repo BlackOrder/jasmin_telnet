@@ -1,6 +1,7 @@
-from .conn import TelnetConnection
-from .basicmanager import BasicManager, ObjectNotFoundError
 import re
+
+from .basicmanager import BasicManager, ObjectNotFoundError
+from .conn import TelnetConnection
 
 
 class MTInterceptor(BasicManager):

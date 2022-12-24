@@ -1,5 +1,5 @@
-from .conn import TelnetConnection
 from .basicmanager import BasicManager, JasminSyntaxError, UnknownError
+from .conn import TelnetConnection
 
 
 class SMPPCCM(BasicManager):
