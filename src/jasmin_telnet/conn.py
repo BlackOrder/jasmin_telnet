@@ -1,8 +1,9 @@
 import pexpect
 from pexpect import spawn
 
-from .exceptions import (TelnetConnectionTimeout, TelnetLoginFailed,
-                         TelnetUnexpectedResponse)
+from jasmin_telnet.exceptions import (TelnetConnectionTimeout,
+                                      TelnetLoginFailed,
+                                      TelnetUnexpectedResponse)
 
 
 class TelnetConnection(object):

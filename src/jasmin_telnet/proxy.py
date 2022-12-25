@@ -1,15 +1,15 @@
 import threading
 
-from .conn import TelnetConnection
-from .filter import Filter as Telnet_Filter
-from .group import Group as Telnet_Group
-from .httpccm import HTTPCCM as Telnet_HTTPCCM
-from .mointerceptor import MOInterceptor as Telnet_MOInterceptor
-from .morouter import MORouter as Telnet_MORouter
-from .mtinterceptor import MTInterceptor as Telnet_MTInterceptor
-from .mtrouter import MTRouter as Telnet_MTRouter
-from .smppccm import SMPPCCM as Telnet_SMPPCCM
-from .user import User as Telnet_User
+from jasmin_telnet.conn import TelnetConnection
+from jasmin_telnet.filter import Filter as Telnet_Filter
+from jasmin_telnet.group import Group as Telnet_Group
+from jasmin_telnet.httpccm import HTTPCCM as Telnet_HTTPCCM
+from jasmin_telnet.mointerceptor import MOInterceptor as Telnet_MOInterceptor
+from jasmin_telnet.morouter import MORouter as Telnet_MORouter
+from jasmin_telnet.mtinterceptor import MTInterceptor as Telnet_MTInterceptor
+from jasmin_telnet.mtrouter import MTRouter as Telnet_MTRouter
+from jasmin_telnet.smppccm import SMPPCCM as Telnet_SMPPCCM
+from jasmin_telnet.user import User as Telnet_User
 
 
 class Proxy:

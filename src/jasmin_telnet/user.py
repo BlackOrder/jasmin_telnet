@@ -1,5 +1,6 @@
-from .basicmanager import BasicManager, JasminSyntaxError, UnknownError
-from .conn import TelnetConnection
+from jasmin_telnet.basicmanager import (BasicManager, JasminSyntaxError,
+                                        UnknownError)
+from jasmin_telnet.conn import TelnetConnection
 
 
 class User(BasicManager):

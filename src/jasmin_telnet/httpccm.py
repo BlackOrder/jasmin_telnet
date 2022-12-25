@@ -1,5 +1,5 @@
-from .basicmanager import BasicManager, ObjectNotFoundError
-from .conn import TelnetConnection
+from jasmin_telnet.basicmanager import BasicManager, ObjectNotFoundError
+from jasmin_telnet.conn import TelnetConnection
 
 
 class HTTPCCM(BasicManager):
