@@ -6,30 +6,48 @@ I wrote some of it and collected most of from: [jasmin-api](https://github.com/j
 
 Also some of the logic is ported from this PHP package [jasmin-web](https://github.com/nnikitos95/jasmin-web) by [nnikitos95](https://github.com/nnikitos95)
 
-## Install
-#### PYPI:
-```
+## Table of Contents
+
+1. **[Installation Instructions](#installation-instructions)**
+    + **[PYPI](#pypi)**
+    + **[From Source](#from-source)**
+2. **[Usage Instructions](#usage-instructions)**
+    + **[Import](#import)**
+    + **[Initialize variables](#initialize-variables)**
+    + **[Sync](#sync)**
+        1. **[Single Module](#single-module)**
+        2. **[Sync All](#sync-all)**
+    + **[Add New](#add-new)**
+    + **[Edit](#edit)**
+    + **[Remove](#remove)**
+
+## Installation Instructions
+
+### PYPI
+
+```bash
 pip3 install -U jasmin-telnet
 ```
-#### From Source:
-```
+
+### From Source
+
+```bash
 git clone https://github.com/BlackOrder/jasmin_telnet.git
 cd jasmin_telnet
 pip3 install .
 ```
 
+## Usage Instructions
 
-## Use:
+### Import
 
-### Import first:
-
-```
+```bash
 from jasmin_telnet.proxy import Proxy as JasminTelnetProxy
 ```
 
-### Initialize variables:
-```
+### Initialize variables
 
+```python
 jasmin_proxy = JasminTelnetProxy(
     host=**jasmin_cli_host**,                               # Default: 127.0.0.1
     port=**jasmin_cli_port**,                               # Default: 8990
@@ -46,9 +64,11 @@ jasmin_proxy = JasminTelnetProxy(
 
 ### Sync
 
-##### Single Module
+#### Single Module
+
 To sync, remove any sub-module not sent and add not existing and update existing.
-```
+
+```python
 jasmin_proxy.sync(
     module="smppccm",
     sub_modules_data={
@@ -72,7 +92,8 @@ jasmin_proxy.sync(
 ```
 
 #### Sync All
-```
+
+```python
 jasmin_proxy.syncAll(
     collection_data={
         "smppccm": {
@@ -108,25 +129,31 @@ jasmin_proxy.syncAll(
     }
 )
 ```
+
 Beware, any module not included will be flushed.
 if you send this:
-```
+
+```python
 jasmin_proxy.syncAll()
 ```
+
 or
-```
+
+```python
 jasmin_proxy.syncAll(collection_data={})
 ```
+
 or
-```
+
+```python
 jasmin_proxy.syncAll(collection_data=None)
 ```
+
 This will flush all of Jasmin configurations.
 
-
-
 ### Add New
-```
+
+```python
 jasmin_proxy.add(
     module="user",
     sub_id="uid3",
@@ -140,7 +167,8 @@ jasmin_proxy.add(
 ```
 
 ### Edit
-```
+
+```python
 jasmin_proxy.edit(
     module="user",
     sub_id="uid3",
@@ -151,10 +179,10 @@ jasmin_proxy.edit(
 ```
 
 ### Remove
-```
+
+```python
 jasmin_proxy.remove(
     module="user",
     sub_id="uid3"
 )
 ```
-
